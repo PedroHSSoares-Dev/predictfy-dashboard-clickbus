@@ -156,7 +156,6 @@ st.markdown(f"""
         margin-bottom: 20px;
         position: relative;
         z-index: 1;
-        overflow: hidden;
     }}
     
     .bento-card:hover {{
@@ -197,7 +196,6 @@ st.markdown(f"""
         margin-bottom: 20px;
         position: relative;
         z-index: 1;
-        overflow: hidden;
     }}
 
     .stPlotlyChart:hover {{
@@ -655,20 +653,20 @@ st.markdown(f"""
         }}
     }}
     
-    /* FORÇAR CONTENÇÃO DOS GRÁFICOS */
-    [data-testid="stVerticalBlock"] > div {{
-        overflow: hidden !important;
-    }}
-    
+    /* ISOLAMENTO DE COLUNAS */
     [data-testid="column"] {{
-        overflow: hidden !important;
-        padding: 0 8px !important;
         position: relative;
         z-index: 1;
     }}
     
     [data-testid="column"]:hover {{
         z-index: 10;
+    }}
+    
+    /* FORÇAR BORDER RADIUS NOS GRÁFICOS */
+    [data-testid="stPlotlyChart"] > div {{
+        border-radius: 20px !important;
+        overflow: hidden;
     }}
     
     </style>
