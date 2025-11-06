@@ -183,7 +183,7 @@ st.markdown(f"""
         position: relative;
         z-index: 1;
     }}
-    
+
     .metric-card:hover {{
         transform: translateY(-5px) scale(1.03) rotateX(2deg);
         box-shadow: 0 0 40px {tema_atual['glow']}, 0 0 0 2px {tema_atual['accent2']};
@@ -818,7 +818,7 @@ ticket_medio_geral = (df_clusters['quantidade'] * df_clusters['gasto_medio_total
 clientes_pf = df_clusters[df_clusters['tipo'] == 'Pessoa']['quantidade'].sum()
 pct_pf = (clientes_pf / total_clientes * 100)
 
-col1, col2, col3, col4 = st.columns(4, gap="small")
+col1, col2, col3, col4 = st.columns(4, gap="medium")
 
 with col1:
     st.markdown(criar_metric_card(
@@ -886,7 +886,7 @@ st.markdown(f"""
 
 df_pessoa = df_clusters[df_clusters['tipo'] == 'Pessoa'].sort_values('quantidade', ascending=False)
 
-col1, col2 = st.columns([1, 1], gap="small")
+col1, col2 = st.columns([1, 1], gap="medium")
 
 with col1:
     cores_pf = [tema_atual['accent1'], tema_atual['accent2'], tema_atual['accent3'], '#a855f7']
@@ -962,7 +962,7 @@ with col2:
     
     st.plotly_chart(fig, use_container_width=True)
 
-col1, col2 = st.columns([3, 2], gap="small")
+col1, col2 = st.columns([3, 2], gap="medium")
 
 with col1:
     fig = px.scatter(
@@ -1085,7 +1085,7 @@ st.markdown(f"""
 ## 🏢 Análise: Pessoa Jurídica {criar_tooltip("Análise de empresas com alto volume de compras e transações recorrentes")}
 """, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([2, 2, 2], gap="small")
+col1, col2, col3 = st.columns([2, 2, 2], gap="medium")
 
 with col1:
     cores_pj = ['#10b981', '#14b8a6', tema_atual['accent1'], '#0ea5e9']
@@ -1173,7 +1173,7 @@ with col3:
 
 st.markdown("<div style='margin-top: 24px;'></div>", unsafe_allow_html=True)
 
-col_map_pj, _ = st.columns([2, 1], gap="small")
+col_map_pj, _ = st.columns([2, 1], gap="medium")
 
 with col_map_pj:
     df_empresa['valor_total'] = df_empresa['quantidade'] * df_empresa['gasto_medio_total']
@@ -1233,7 +1233,7 @@ gasto_medio_pj = (df_empresa['quantidade'] * df_empresa['gasto_medio_total']).su
 freq_media_pf = (df_pessoa['quantidade'] * df_pessoa['frequencia_media']).sum() / total_pf
 freq_media_pj = (df_empresa['quantidade'] * df_empresa['frequencia_media']).sum() / total_pj
 
-col1, col2 = st.columns(2, gap="small")
+col1, col2 = st.columns(2, gap="medium")
 
 with col1:
     html_content = f'<div class="bento-card" style="border: 2px solid {tema_atual["accent2"]};">'
@@ -1289,7 +1289,7 @@ st.markdown(f"""
 ## 💡 Insights Principais {criar_tooltip("Principais descobertas e oportunidades identificadas na análise")}
 """, unsafe_allow_html=True)
 
-col1, col2, col3, col4 = st.columns(4, gap="small")
+col1, col2, col3, col4 = st.columns(4, gap="medium")
 
 potencial_qtd = df_pessoa[df_pessoa['cluster'].str.contains('Potencial')]['quantidade'].sum()
 dormindo_qtd = df_pessoa[df_pessoa['cluster'].str.contains('Dormindo')]['quantidade'].sum()
