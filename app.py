@@ -156,7 +156,6 @@ st.markdown(f"""
         margin-bottom: 20px;
         position: relative;
         z-index: 1;
-        overflow: hidden;
         isolation: isolate;
     }}
     
@@ -198,7 +197,6 @@ st.markdown(f"""
         margin-bottom: 20px;
         position: relative;
         z-index: 1;
-        overflow: hidden;
         isolation: isolate;
     }}
 
@@ -663,21 +661,29 @@ st.markdown(f"""
         z-index: 1;
         isolation: isolate;
         contain: layout style paint;
+        margin: 0 4px;
     }}
     
     [data-testid="column"]:hover {{
         z-index: 10;
     }}
     
-    /* FORÇAR BORDER RADIUS NOS GRÁFICOS */
+    /* FORÇAR BORDER RADIUS E CONTENÇÃO NOS GRÁFICOS INTERNOS */
     [data-testid="stPlotlyChart"] > div {{
-        border-radius: 20px !important;
-        overflow: hidden;
+        border-radius: 16px !important;
+        overflow: hidden !important;
+        max-width: 100%;
     }}
     
     /* GARANTIR QUE OS GRÁFICOS FIQUEM CONTIDOS */
     [data-testid="column"] > div {{
         isolation: isolate;
+        max-width: 100%;
+    }}
+    
+    /* CONTER ELEMENTOS DENTRO DAS COLUNAS */
+    .js-plotly-plot {{
+        max-width: 100% !important;
     }}
     
     </style>
