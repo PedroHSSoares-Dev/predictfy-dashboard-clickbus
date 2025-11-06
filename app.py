@@ -7,7 +7,7 @@ e layout Bento Grid totalmente responsivo para Mobile/Tablet/Desktop
 
 Autor: Predictfy Team
 Data: Novembro 2025
-Versão: 3.0 - Premium Edition (Mobile Ready)
+Versão: 3.0 - Premium Edition (Mobile Ready) - Fixed Overflow
 """
 
 import streamlit as st
@@ -157,6 +157,7 @@ st.markdown(f"""
         margin-bottom: 20px;
         position: relative;
         z-index: 1;
+        overflow: hidden;
     }}
     
     .bento-card:hover {{
@@ -167,6 +168,7 @@ st.markdown(f"""
             0 30px 90px -20px rgba(0, 0, 0, 0.5);
         border: 1px solid {tema_atual['accent2']};
         z-index: 10;
+        overflow: visible;
     }}
     
     /* METRIC CARDS */
@@ -195,13 +197,14 @@ st.markdown(f"""
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 20px;
-        padding: 24px;
+        padding: 16px;
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         transform-style: preserve-3d;
         margin-bottom: 20px;
         position: relative;
         z-index: 1;
+        overflow: hidden;
     }}
 
     .stPlotlyChart:hover {{
@@ -209,6 +212,7 @@ st.markdown(f"""
         box-shadow: 0 20px 60px 0 {tema_atual['glow']}, 0 0 0 2px {tema_atual['accent2']};
         border: 1px solid {tema_atual['accent2']};
         z-index: 10;
+        overflow: visible;
     }}
     
     /* === ANIMAÇÃO DE ENTRADA === */
@@ -454,7 +458,7 @@ st.markdown(f"""
         }}
         
         .stPlotlyChart {{
-            padding: 18px;
+            padding: 14px;
         }}
         
         .comparison-header {{
@@ -508,7 +512,7 @@ st.markdown(f"""
         }}
         
         .stPlotlyChart {{
-            padding: 16px;
+            padding: 12px;
             margin-bottom: 15px;
         }}
         
@@ -612,7 +616,7 @@ st.markdown(f"""
         }}
         
         .stPlotlyChart {{
-            padding: 12px;
+            padding: 10px;
         }}
         
         .comparison-mini {{
@@ -659,18 +663,14 @@ st.markdown(f"""
         }}
     }}
     
-    /* CONTAINER ESPECÍFICO PARA GRÁFICOS */
-    [data-testid="stPlotlyChart"] {{
+    /* FORÇAR CONTENÇÃO DOS GRÁFICOS */
+    [data-testid="stVerticalBlock"] > div {{
         overflow: hidden !important;
-        border-radius: 20px !important;
     }}
     
-    [data-testid="stPlotlyChart"]:hover {{
-        overflow: visible !important;
-    }}
-    
-    /* ISOLAMENTO DE COLUNAS */
     [data-testid="column"] {{
+        overflow: hidden !important;
+        padding: 0 8px !important;
         position: relative;
         z-index: 1;
     }}
@@ -923,31 +923,32 @@ with col1:
     fig.update_traces(
         textposition='outside',
         textinfo='percent+label',
-        textfont=dict(color='white', size=13, family='Inter'),
+        textfont=dict(color='white', size=11, family='Inter'),
         marker=dict(line=dict(color='#0a0e27', width=3))
     )
     
     fig.update_layout(
         title=dict(
             text='📊 Distribuição de Clientes PF',
-            font=dict(color='#fafafa', size=18, family='Inter'),
+            font=dict(color='#fafafa', size=16, family='Inter'),
             x=0.05, y=0.95, xanchor='left', yanchor='top'
         ),
         height=380,
-        margin=dict(l=20, r=20, t=80, b=20), 
+        margin=dict(l=5, r=5, t=60, b=10),
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
-        font=dict(color='white', size=12, family='Inter'),
+        font=dict(color='white', size=11, family='Inter'),
         showlegend=True,
         legend=dict(
-            orientation="v", yanchor="middle", y=0.5, xanchor="left", x=1.05,
+            orientation="v", yanchor="middle", y=0.5, xanchor="left", x=1.01,
             bgcolor='rgba(255,255,255,0.05)',
-            bordercolor='rgba(255,255,255,0.1)', borderwidth=1
+            bordercolor='rgba(255,255,255,0.1)', borderwidth=1,
+            font=dict(size=10)
         ),
-        autosize=True,
+        autosize=True
     )
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 
 with col2:
     fig = go.Figure()
@@ -960,7 +961,7 @@ with col2:
             marker=dict(color=cores_pf[idx], line=dict(color='white', width=2)),
             text=f"R$ {formatar_numero(row['gasto_medio_total'])}",
             textposition='auto',
-            textfont=dict(color='white', size=14, family='Inter'),
+            textfont=dict(color='white', size=12, family='Inter'),
             showlegend=False,
             hovertemplate=f"<b>{row['cluster']}</b><br>R$ {row['gasto_medio_total']:.2f}<extra></extra>"
         ))
@@ -968,20 +969,20 @@ with col2:
     fig.update_layout(
         title=dict(
             text='💰 Gasto Médio por Cluster PF',
-            font=dict(color='#fafafa', size=18, family='Inter'),
+            font=dict(color='#fafafa', size=16, family='Inter'),
             x=0.05, y=0.95, xanchor='left', yanchor='top'
         ),
         height=380,
-        margin=dict(l=0, r=0, t=80, b=20), 
+        margin=dict(l=5, r=5, t=60, b=10),
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         xaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)', color='white', title=None),
         yaxis=dict(showgrid=False, color='white'),
         font=dict(color='white', family='Inter'),
-        autosize=True,
+        autosize=True
     )
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 
 col1, col2 = st.columns([3, 2], gap="medium")
 
@@ -1000,11 +1001,11 @@ with col1:
     fig.update_layout(
         title=dict(
             text='⚡ Recência vs Frequência PF',
-            font=dict(color='#fafafa', size=18, family='Inter'),
+            font=dict(color='#fafafa', size=16, family='Inter'),
             x=0.05, y=0.95, xanchor='left', yanchor='top'
         ),
         height=350,
-        margin=dict(l=0, r=0, t=80, b=0), 
+        margin=dict(l=5, r=5, t=60, b=5),
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         xaxis=dict(showgrid=True, gridcolor='rgba(255,255,255,0.1)', color='white', title='Recência (dias)'),
@@ -1012,14 +1013,15 @@ with col1:
         font=dict(color='white', family='Inter'),
         coloraxis_colorbar=dict(
             title="Gasto<br>Médio", titleside="right",
-            titlefont=dict(color='white'), tickfont=dict(color='white'),
+            titlefont=dict(color='white', size=10), tickfont=dict(color='white', size=9),
             bgcolor='rgba(255,255,255,0.05)',
-            bordercolor='rgba(255,255,255,0.1)', borderwidth=1
+            bordercolor='rgba(255,255,255,0.1)', borderwidth=1,
+            len=0.7
         ),
-        autosize=True,
+        autosize=True
     )
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 
     st.markdown("<div style='margin-top: 24px;'></div>", unsafe_allow_html=True)
 
@@ -1037,31 +1039,32 @@ with col1:
     
     fig_treemap_pf.update_traces(
         texttemplate="<b>%{label}</b><br>R$ %{value:,.2s}",
-        textfont=dict(color='white', size=14, family='Inter'),
+        textfont=dict(color='white', size=13, family='Inter'),
         hovertemplate="<b>%{label}</b><br><br>Valor Total: R$ %{customdata[2]:,.2f}<br>Clientes: %{customdata[0]:,.0f}<br>Gasto Médio: R$ %{customdata[1]:,.2f}<extra></extra>"
     )
     
     fig_treemap_pf.update_layout(
         title=dict(
             text='💸 Impacto Financeiro Total por Cluster PF',
-            font=dict(color='#fafafa', size=18, family='Inter'),
+            font=dict(color='#fafafa', size=16, family='Inter'),
             x=0.05, y=0.95, xanchor='left', yanchor='top'
         ),
         height=400,
-        margin=dict(l=0, r=0, t=80, b=0),
+        margin=dict(l=5, r=5, t=60, b=5),
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         font=dict(color='white', family='Inter'),
         coloraxis_colorbar=dict(
             title="Gasto<br>Médio", titleside="right",
-            titlefont=dict(color='white'), tickfont=dict(color='white'),
+            titlefont=dict(color='white', size=10), tickfont=dict(color='white', size=9),
             bgcolor='rgba(255,255,255,0.05)',
-            bordercolor='rgba(255,255,255,0.1)', borderwidth=1
+            bordercolor='rgba(255,255,255,0.1)', borderwidth=1,
+            len=0.7
         ),
-        autosize=True,
+        autosize=True
     )
     
-    st.plotly_chart(fig_treemap_pf, use_container_width=True)
+    st.plotly_chart(fig_treemap_pf, use_container_width=True, config={'displayModeBar': False})
 
 with col2:
     badges_cores = ['cyan', 'blue', 'purple', 'orange']
@@ -1122,25 +1125,25 @@ with col1:
     fig.update_traces(
         textposition='inside',
         textinfo='percent+label',
-        textfont=dict(color='white', size=12, family='Inter'),
+        textfont=dict(color='white', size=11, family='Inter'),
         marker=dict(line=dict(color='#0a0e27', width=3))
     )
     
     fig.update_layout(
         title=dict(
             text='📊 Distribuição PJ',
-            font=dict(color='#fafafa', size=18, family='Inter'),
+            font=dict(color='#fafafa', size=16, family='Inter'),
             x=0.05, y=0.95, xanchor='left', yanchor='top'
         ),
         height=320,
-        margin=dict(l=0, r=0, t=80, b=0), 
+        margin=dict(l=5, r=5, t=60, b=5),
         paper_bgcolor='rgba(0,0,0,0)',
         showlegend=False,
         font=dict(color='white', family='Inter'),
-        autosize=True,
+        autosize=True
     )
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 
 with col2:
     fig = go.Figure()
@@ -1153,27 +1156,27 @@ with col2:
             marker=dict(color=cores_pj[idx], line=dict(color='white', width=2)),
             text=f"R$ {formatar_numero(row['gasto_medio_total'])}",
             textposition='auto',
-            textfont=dict(color='white', size=12, family='Inter'),
+            textfont=dict(color='white', size=11, family='Inter'),
             showlegend=False
         ))
     
     fig.update_layout(
         title=dict(
             text='💎 Valor Médio PJ',
-            font=dict(color='#fafafa', size=18, family='Inter'),
+            font=dict(color='#fafafa', size=16, family='Inter'),
             x=0.05, y=0.95, xanchor='left', yanchor='top'
         ),
         height=320,
-        margin=dict(l=0, r=0, t=80, b=0), 
+        margin=dict(l=5, r=5, t=60, b=5),
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         xaxis=dict(showgrid=False, color='white'),
         yaxis=dict(showgrid=False, color='white'),
         font=dict(color='white', family='Inter'),
-        autosize=True,
+        autosize=True
     )
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
 
 with col3:
     vip = df_empresa[df_empresa['cluster'].str.contains('VIP')].iloc[0] if len(df_empresa[df_empresa['cluster'].str.contains('VIP')]) > 0 else df_empresa.iloc[0]
@@ -1211,31 +1214,32 @@ with col_map_pj:
     
     fig_treemap_pj.update_traces(
         texttemplate="<b>%{label}</b><br>R$ %{value:,.2s}",
-        textfont=dict(color='white', size=14, family='Inter'),
+        textfont=dict(color='white', size=13, family='Inter'),
         hovertemplate="<b>%{label}</b><br><br>Valor Total: R$ %{customdata[2]:,.2f}<br>Empresas: %{customdata[0]:,.0f}<br>Gasto Médio: R$ %{customdata[1]:,.2f}<extra></extra>"
     )
     
     fig_treemap_pj.update_layout(
         title=dict(
             text='💸 Impacto Financeiro Total por Cluster PJ',
-            font=dict(color='#fafafa', size=18, family='Inter'),
+            font=dict(color='#fafafa', size=16, family='Inter'),
             x=0.05, y=0.95, xanchor='left', yanchor='top'
         ),
         height=400,
-        margin=dict(l=0, r=0, t=80, b=0),
+        margin=dict(l=5, r=5, t=60, b=5),
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         font=dict(color='white', family='Inter'),
         coloraxis_colorbar=dict(
             title="Gasto<br>Médio", titleside="right",
-            titlefont=dict(color='white'), tickfont=dict(color='white'),
+            titlefont=dict(color='white', size=10), tickfont=dict(color='white', size=9),
             bgcolor='rgba(255,255,255,0.05)',
-            bordercolor='rgba(255,255,255,0.1)', borderwidth=1
+            bordercolor='rgba(255,255,255,0.1)', borderwidth=1,
+            len=0.7
         ),
-        autosize=True,
+        autosize=True
     )
     
-    st.plotly_chart(fig_treemap_pj, use_container_width=True)
+    st.plotly_chart(fig_treemap_pj, use_container_width=True, config={'displayModeBar': False})
 
 st.markdown("<br><br>", unsafe_allow_html=True)
 
