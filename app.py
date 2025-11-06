@@ -790,14 +790,12 @@ st.markdown(f"""
     <h1 class="pulse" style="
         background: linear-gradient(90deg, {tema_atual['accent1']} 0%, {tema_atual['accent2']} 50%, {tema_atual['accent3']} 100%);
         -webkit-background-clip: text;
-        background-clip: text;
         -webkit-text-fill-color: transparent;
-        color: transparent;
         display: inline-block;
         margin-bottom: 10px;
-    ">🎯 PREDICTFY ANALYTICS</h1>
+    ">🎯 PREDICTFY X CLICKBUS 🚌</h1>
     <p style="color: #a0a0a0; font-size: 1rem; letter-spacing: 3px; margin-top: 0;">
-        CLUSTERIZAÇÃO INTELIGENTE | CLICKBUS 2025 | V3.0 PREMIUM
+        CLUSTERIZAÇÃO INTELIGENTE | CHALLENGE CLICKBUS 2025 
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -1334,10 +1332,10 @@ st.markdown(f"""
 <div style="text-align: center; padding: 40px 20px; background: rgba(255,255,255,0.02); border-radius: 20px; margin-top: 40px; border: 1px solid rgba(255,255,255,0.05);">
     <div style="font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; background: linear-gradient(90deg, {tema_atual['accent1']}, {tema_atual['accent2']}, {tema_atual['accent3']}); 
          -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; display: inline-block;">
-        PREDICTFY ANALYTICS V3.0
+        🎯 PREDICTFY X CLICKBUS 🚌
     </div>
     <div style="color: #888; font-size: 0.85rem; letter-spacing: 2px;">
-        CHALLENGE CLICKBUS 2025 | DATA SCIENCE & ANALYTICS | PREMIUM EDITION
+        CHALLENGE CLICKBUS 2025 | DATA SCIENCE & ANALYTICS 
     </div>
     <div style="margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
         <span class="badge badge-cyan">🎯 CLUSTERIZAÇÃO</span>
