@@ -788,14 +788,13 @@ if df_clusters is None:
 st.markdown(f"""
 <div style="text-align: center; margin-bottom: 40px;">
     <h1 class="pulse" style="
-        background: linear-gradient(90deg, {tema_atual['accent1']} 0%, {tema_atual['accent2']} 50%, {tema_atual['accent3']} 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: {tema_atual['accent2']};
         display: inline-block;
         margin-bottom: 10px;
+        text-shadow: 0 0 30px {tema_atual['glow']}, 0 0 60px {tema_atual['glow']};
     ">PREDICTFY X CLICKBUS</h1>
     <p style="color: #a0a0a0; font-size: 1rem; letter-spacing: 3px; margin-top: 0;">
-        CLUSTERIZAÇÃO INTELIGENTE | CHALLENGE CLICKBUS 2025 
+        CLUSTERIZAÇÃO INTELIGENTE | CHALLENGE CLICKBUS 2025 | NEXT 2025
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -1335,7 +1334,7 @@ st.markdown(f"""
         PREDICTFY X CLICKBUS
     </div>
     <div style="color: #888; font-size: 0.85rem; letter-spacing: 2px;">
-        CHALLENGE CLICKBUS 2025 | DATA SCIENCE & ANALYTICS 
+        CHALLENGE CLICKBUS 2025 | DATA SCIENCE & ANALYTICS | NEXT 2025
     </div>
     <div style="margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
         <span class="badge badge-cyan">🎯 CLUSTERIZAÇÃO</span>
