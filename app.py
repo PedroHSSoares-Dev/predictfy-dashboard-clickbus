@@ -153,7 +153,6 @@ st.markdown(f"""
         padding: 24px;
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        transform-style: preserve-3d;
         margin-bottom: 20px;
         position: relative;
         z-index: 1;
@@ -161,14 +160,10 @@ st.markdown(f"""
     }}
     
     .bento-card:hover {{
-        transform: translateY(-8px) rotateX(2deg);
-        box-shadow: 
-            0 20px 60px 0 {tema_atual['glow']},
-            0 0 0 2px {tema_atual['accent2']},
-            0 30px 90px -20px rgba(0, 0, 0, 0.5);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px 0 {tema_atual['glow']};
         border: 1px solid {tema_atual['accent2']};
         z-index: 10;
-        overflow: visible;
     }}
     
     /* METRIC CARDS */
@@ -180,15 +175,14 @@ st.markdown(f"""
         padding: 24px;
         text-align: center;
         transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        transform-style: preserve-3d;
         margin-bottom: 15px;
         position: relative;
         z-index: 1;
     }}
 
     .metric-card:hover {{
-        transform: translateY(-5px) scale(1.03) rotateX(2deg);
-        box-shadow: 0 0 40px {tema_atual['glow']}, 0 0 0 2px {tema_atual['accent2']};
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 0 30px {tema_atual['glow']};
         z-index: 10;
     }}
 
@@ -200,7 +194,6 @@ st.markdown(f"""
         padding: 16px;
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        transform-style: preserve-3d;
         margin-bottom: 20px;
         position: relative;
         z-index: 1;
@@ -208,11 +201,10 @@ st.markdown(f"""
     }}
 
     .stPlotlyChart:hover {{
-        transform: translateY(-8px) rotateX(1deg);
-        box-shadow: 0 20px 60px 0 {tema_atual['glow']}, 0 0 0 2px {tema_atual['accent2']};
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px 0 {tema_atual['glow']};
         border: 1px solid {tema_atual['accent2']};
         z-index: 10;
-        overflow: visible;
     }}
     
     /* === ANIMAÇÃO DE ENTRADA === */
@@ -839,7 +831,7 @@ ticket_medio_geral = (df_clusters['quantidade'] * df_clusters['gasto_medio_total
 clientes_pf = df_clusters[df_clusters['tipo'] == 'Pessoa']['quantidade'].sum()
 pct_pf = (clientes_pf / total_clientes * 100)
 
-col1, col2, col3, col4 = st.columns(4, gap="medium")
+col1, col2, col3, col4 = st.columns(4, gap="small")
 
 with col1:
     st.markdown(criar_metric_card(
@@ -907,7 +899,7 @@ st.markdown(f"""
 
 df_pessoa = df_clusters[df_clusters['tipo'] == 'Pessoa'].sort_values('quantidade', ascending=False)
 
-col1, col2 = st.columns([1, 1], gap="medium")
+col1, col2 = st.columns([1, 1], gap="small")
 
 with col1:
     cores_pf = [tema_atual['accent1'], tema_atual['accent2'], tema_atual['accent3'], '#a855f7']
@@ -948,7 +940,7 @@ with col1:
         autosize=True
     )
     
-    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+    st.plotly_chart(fig, use_container_width=True)
 
 with col2:
     fig = go.Figure()
@@ -982,9 +974,9 @@ with col2:
         autosize=True
     )
     
-    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+    st.plotly_chart(fig, use_container_width=True)
 
-col1, col2 = st.columns([3, 2], gap="medium")
+col1, col2 = st.columns([3, 2], gap="small")
 
 with col1:
     fig = px.scatter(
@@ -1021,7 +1013,7 @@ with col1:
         autosize=True
     )
     
-    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+    st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("<div style='margin-top: 24px;'></div>", unsafe_allow_html=True)
 
@@ -1064,7 +1056,7 @@ with col1:
         autosize=True
     )
     
-    st.plotly_chart(fig_treemap_pf, use_container_width=True, config={'displayModeBar': False})
+    st.plotly_chart(fig_treemap_pf, use_container_width=True)
 
 with col2:
     badges_cores = ['cyan', 'blue', 'purple', 'orange']
@@ -1109,7 +1101,7 @@ st.markdown(f"""
 ## 🏢 Análise: Pessoa Jurídica {criar_tooltip("Análise de empresas com alto volume de compras e transações recorrentes")}
 """, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([2, 2, 2], gap="medium")
+col1, col2, col3 = st.columns([2, 2, 2], gap="small")
 
 with col1:
     cores_pj = ['#10b981', '#14b8a6', tema_atual['accent1'], '#0ea5e9']
@@ -1143,7 +1135,7 @@ with col1:
         autosize=True
     )
     
-    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+    st.plotly_chart(fig, use_container_width=True)
 
 with col2:
     fig = go.Figure()
@@ -1176,7 +1168,7 @@ with col2:
         autosize=True
     )
     
-    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+    st.plotly_chart(fig, use_container_width=True)
 
 with col3:
     vip = df_empresa[df_empresa['cluster'].str.contains('VIP')].iloc[0] if len(df_empresa[df_empresa['cluster'].str.contains('VIP')]) > 0 else df_empresa.iloc[0]
@@ -1197,7 +1189,7 @@ with col3:
 
 st.markdown("<div style='margin-top: 24px;'></div>", unsafe_allow_html=True)
 
-col_map_pj, _ = st.columns([2, 1], gap="medium")
+col_map_pj, _ = st.columns([2, 1], gap="small")
 
 with col_map_pj:
     df_empresa['valor_total'] = df_empresa['quantidade'] * df_empresa['gasto_medio_total']
@@ -1239,7 +1231,7 @@ with col_map_pj:
         autosize=True
     )
     
-    st.plotly_chart(fig_treemap_pj, use_container_width=True, config={'displayModeBar': False})
+    st.plotly_chart(fig_treemap_pj, use_container_width=True)
 
 st.markdown("<br><br>", unsafe_allow_html=True)
 
@@ -1258,7 +1250,7 @@ gasto_medio_pj = (df_empresa['quantidade'] * df_empresa['gasto_medio_total']).su
 freq_media_pf = (df_pessoa['quantidade'] * df_pessoa['frequencia_media']).sum() / total_pf
 freq_media_pj = (df_empresa['quantidade'] * df_empresa['frequencia_media']).sum() / total_pj
 
-col1, col2 = st.columns(2, gap="medium")
+col1, col2 = st.columns(2, gap="small")
 
 with col1:
     html_content = f'<div class="bento-card" style="border: 2px solid {tema_atual["accent2"]};">'
@@ -1314,7 +1306,7 @@ st.markdown(f"""
 ## 💡 Insights Principais {criar_tooltip("Principais descobertas e oportunidades identificadas na análise")}
 """, unsafe_allow_html=True)
 
-col1, col2, col3, col4 = st.columns(4, gap="medium")
+col1, col2, col3, col4 = st.columns(4, gap="small")
 
 potencial_qtd = df_pessoa[df_pessoa['cluster'].str.contains('Potencial')]['quantidade'].sum()
 dormindo_qtd = df_pessoa[df_pessoa['cluster'].str.contains('Dormindo')]['quantidade'].sum()
