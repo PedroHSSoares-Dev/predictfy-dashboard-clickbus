@@ -658,6 +658,27 @@ st.markdown(f"""
             font-size: 1.3rem;
         }}
     }}
+    
+    /* CONTAINER ESPECÍFICO PARA GRÁFICOS */
+    [data-testid="stPlotlyChart"] {{
+        overflow: hidden !important;
+        border-radius: 20px !important;
+    }}
+    
+    [data-testid="stPlotlyChart"]:hover {{
+        overflow: visible !important;
+    }}
+    
+    /* ISOLAMENTO DE COLUNAS */
+    [data-testid="column"] {{
+        position: relative;
+        z-index: 1;
+    }}
+    
+    [data-testid="column"]:hover {{
+        z-index: 10;
+    }}
+    
     </style>
     
     <!-- PARTÍCULAS ANIMADAS -->
