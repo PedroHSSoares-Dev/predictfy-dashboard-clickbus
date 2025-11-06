@@ -918,7 +918,6 @@ with col1:
             bordercolor='rgba(255,255,255,0.1)', borderwidth=1
         ),
         autosize=True,
-        responsive=True
     )
     
     st.plotly_chart(fig, use_container_width=True)
@@ -953,7 +952,6 @@ with col2:
         yaxis=dict(showgrid=False, color='white'),
         font=dict(color='white', family='Inter'),
         autosize=True,
-        responsive=True
     )
     
     st.plotly_chart(fig, use_container_width=True)
@@ -992,7 +990,6 @@ with col1:
             bordercolor='rgba(255,255,255,0.1)', borderwidth=1
         ),
         autosize=True,
-        responsive=True
     )
     
     st.plotly_chart(fig, use_container_width=True)
@@ -1035,7 +1032,6 @@ with col1:
             bordercolor='rgba(255,255,255,0.1)', borderwidth=1
         ),
         autosize=True,
-        responsive=True
     )
     
     st.plotly_chart(fig_treemap_pf, use_container_width=True)
@@ -1115,7 +1111,6 @@ with col1:
         showlegend=False,
         font=dict(color='white', family='Inter'),
         autosize=True,
-        responsive=True
     )
     
     st.plotly_chart(fig, use_container_width=True)
@@ -1149,7 +1144,6 @@ with col2:
         yaxis=dict(showgrid=False, color='white'),
         font=dict(color='white', family='Inter'),
         autosize=True,
-        responsive=True
     )
     
     st.plotly_chart(fig, use_container_width=True)
@@ -1212,7 +1206,6 @@ with col_map_pj:
             bordercolor='rgba(255,255,255,0.1)', borderwidth=1
         ),
         autosize=True,
-        responsive=True
     )
     
     st.plotly_chart(fig_treemap_pj, use_container_width=True)
