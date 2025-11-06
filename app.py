@@ -155,6 +155,8 @@ st.markdown(f"""
         transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         transform-style: preserve-3d;
         margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
     }}
     
     .bento-card:hover {{
@@ -164,6 +166,7 @@ st.markdown(f"""
             0 0 0 2px {tema_atual['accent2']},
             0 30px 90px -20px rgba(0, 0, 0, 0.5);
         border: 1px solid {tema_atual['accent2']};
+        z-index: 10;
     }}
     
     /* METRIC CARDS */
@@ -177,11 +180,14 @@ st.markdown(f"""
         transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         transform-style: preserve-3d;
         margin-bottom: 15px;
+        position: relative;
+        z-index: 1;
     }}
     
     .metric-card:hover {{
         transform: translateY(-5px) scale(1.03) rotateX(2deg);
         box-shadow: 0 0 40px {tema_atual['glow']}, 0 0 0 2px {tema_atual['accent2']};
+        z-index: 10;
     }}
 
     .stPlotlyChart {{
@@ -194,12 +200,15 @@ st.markdown(f"""
         transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         transform-style: preserve-3d;
         margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
     }}
-    
+
     .stPlotlyChart:hover {{
         transform: translateY(-8px) rotateX(1deg);
         box-shadow: 0 20px 60px 0 {tema_atual['glow']}, 0 0 0 2px {tema_atual['accent2']};
         border: 1px solid {tema_atual['accent2']};
+        z-index: 10;
     }}
     
     /* === ANIMAÇÃO DE ENTRADA === */
